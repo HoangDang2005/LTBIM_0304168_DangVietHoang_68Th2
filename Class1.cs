@@ -21,10 +21,15 @@ namespace Revit2025
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            //Chọn các cạnh và in ra các cạnh đó
+            //select các mặt phẳng 
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
-            IList<Reference> referencesCollection = uidoc.Selection.PickObjects(ObjectType.Edge);
-            MessageBox.Show("Ban da chon tong tat ca" + referencesCollection.Count.ToString() + "edge");
+            XYZ point1 = uidoc.Selection.PickPoint();
+            XYZ point2 = uidoc.Selection.PickPoint();
+            XYZ point4 = uidoc.Selection.PickPoint();
+            if (point1.X == point2.X && point1.Y == point4.Y && point1.Z == point4.Z)
+            {
+                MessageBox.Show("");
+            }
 
             return Result.Succeeded;
 
