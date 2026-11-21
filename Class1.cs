@@ -21,18 +21,10 @@ namespace Revit2025
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            // chọn các điểm và in ra tọa độ các điểm đó
+            //Chọn các cạnh và in ra các cạnh đó
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
-            XYZ point1 = uidoc.Selection.PickPoint();
-            XYZ point2 = uidoc.Selection.PickPoint();
-            XYZ point3 = uidoc.Selection.PickPoint();
-
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine(point1.ToString());
-            sb.AppendLine(point2.ToString());
-            sb.AppendLine(point3.ToString());
-
-            MessageBox.Show("Ban da lua chon cac diem points:\n" + sb.ToString());
+            IList<Reference> referencesCollection = uidoc.Selection.PickObjects(ObjectType.Edge);
+            MessageBox.Show("Ban da chon tong tat ca" + referencesCollection.Count.ToString() + "edge");
 
             return Result.Succeeded;
 
