@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Revit 2026": {
+      "commandName": "Executable",
+      "executablePath": "D:\\REVID\\Revit 2025\\Revit.exe",
+      "workingDirectory": "D:\\REVID\\Revit 2025"
+    }
+  }
+}
