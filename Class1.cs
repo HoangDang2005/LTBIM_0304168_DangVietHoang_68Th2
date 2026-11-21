@@ -21,12 +21,17 @@ namespace Revit2025
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            MessageBox.Show("Hello world");
-            for (int i = 0; i < 6; i++)
+            UIDocument uidoc = commandData.Application.ActiveUIDocument;
+            ICollection<ElementId> SelectElement = uidoc.Selection.GetElementIds();
+            int totaCount = SelectElement.Count;
+            MessageBox.Show("Ban da chon" + totaCount.ToString() + "element");
+            //phat trien code
+            string IDList = "Danh sach ID cua doi tuong:\n";
+            foreach (ElementId e1 in SelectElement)
             {
-                MessageBox.Show(i.ToString()); 
+                IDList = IDList + e1.ToString() + "\n";
             }
-            MessageBox.Show("check");
+            MessageBox.Show(IDList);
 
             return Result.Succeeded;
 
