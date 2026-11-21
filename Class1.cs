@@ -21,17 +21,18 @@ namespace Revit2025
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            // chọn các điểm và in ra tọa độ các điểm đó
             UIDocument uidoc = commandData.Application.ActiveUIDocument;
-            ICollection<ElementId> SelectElement = uidoc.Selection.GetElementIds();
-            int totaCount = SelectElement.Count;
-            MessageBox.Show("Ban da chon" + totaCount.ToString() + "element");
-            //phat trien code
-            string IDList = "Danh sach ID cua doi tuong:\n";
-            foreach (ElementId e1 in SelectElement)
-            {
-                IDList = IDList + e1.ToString() + "\n";
-            }
-            MessageBox.Show(IDList);
+            XYZ point1 = uidoc.Selection.PickPoint();
+            XYZ point2 = uidoc.Selection.PickPoint();
+            XYZ point3 = uidoc.Selection.PickPoint();
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(point1.ToString());
+            sb.AppendLine(point2.ToString());
+            sb.AppendLine(point3.ToString());
+
+            MessageBox.Show("Ban da lua chon cac diem points:\n" + sb.ToString());
 
             return Result.Succeeded;
 
